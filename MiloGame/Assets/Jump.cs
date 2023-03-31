@@ -36,6 +36,7 @@ public class Jump : MonoBehaviour
             // and apply a velocity in the up direction (0, 1, 0) with
             // a magnitude of Codey's jump strength
             rigidBody.velocity = Vector3.up * jumpStrength;
+            controls.onGround = false;
         }
     }
     // use FixedUpdate because we are calculating physics
@@ -56,5 +57,13 @@ public class Jump : MonoBehaviour
             rigidBody.velocity += Vector2.up * Physics.gravity.y * jumpMultiplier * Time.fixedDeltaTime;
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag == "Ground")
+        {
+            controls.onGround = true;
+        }
     }
 }
