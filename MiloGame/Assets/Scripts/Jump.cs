@@ -33,10 +33,7 @@ public class Jump : MonoBehaviour
         // and Codey is on the ground
         if (Input.GetButtonDown("Jump") && controls.onGround)
         {
-            // and apply a velocity in the up direction (0, 1, 0) with
-            // a magnitude of Codey's jump strength
-            rigidBody.velocity = Vector3.up * jumpStrength;
-            controls.onGround = false;
+            ActivateJump();
         }
     }
     // use FixedUpdate because we are calculating physics
@@ -59,11 +56,40 @@ public class Jump : MonoBehaviour
 
     }
 
+    void ActivateJump()
+    {
+        // and apply a velocity in the up direction (0, 1, 0) with
+        // a magnitude of Codey's jump strength
+        rigidBody.velocity = Vector3.up * jumpStrength;
+        controls.onGround = false;
+    }
+
+    void SpringJump()
+    {
+        // and apply a velocity in the up direction (0, 1, 0) with
+        // a magnitude of Codey's jump strength
+        rigidBody.velocity = Vector3.up * (jumpStrength * 1.25f);
+        controls.onGround = false;
+    }
+
     void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "Ground")
         {
             controls.onGround = true;
+        }
+        if (collider.gameObject.tag == "Spring")
+        {
+
+            SpringJump();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag == "Ground")
+        {
+            controls.onGround = false;
         }
     }
 }
