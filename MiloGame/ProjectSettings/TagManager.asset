@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Spring
+  - Sink
   layers:
   - Default
   - TransparentFX
