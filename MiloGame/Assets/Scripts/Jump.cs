@@ -78,9 +78,12 @@ public class Jump : MonoBehaviour
         {
             controls.onGround = true;
         }
+        if (collider.gameObject.tag == "Sink")
+        {
+            controls.onGround = true;
+        }
         if (collider.gameObject.tag == "Spring")
         {
-
             SpringJump();
         }
     }
@@ -90,6 +93,7 @@ public class Jump : MonoBehaviour
         if (collider.gameObject.tag == "Ground")
         {
             controls.onGround = false;
+            //exception if you walk onto Sink
         }
     }
 }

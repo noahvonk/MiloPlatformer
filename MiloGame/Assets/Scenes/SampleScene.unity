@@ -379,7 +379,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0802938, y: 0.27403527, z: -10}
+  m_LocalPosition: {x: 2.040294, y: 0.27403527, z: -10}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -661,7 +661,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.119636536, b: 1, a: 1}
+  m_Color: {r: 0.27820748, g: 0, b: 0.5849056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -679,7 +679,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808034861}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.26, y: -0.89, z: 0}
+  m_LocalPosition: {x: -5.65, y: -0.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1066,6 +1066,7 @@ GameObject:
   - component: {fileID: 1581551223}
   - component: {fileID: 1581551222}
   - component: {fileID: 1581551224}
+  - component: {fileID: 1581551225}
   m_Layer: 0
   m_Name: Sinking
   m_TagString: Sink
@@ -1166,6 +1167,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1581551225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581551221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b2d02568d7ed94a970911362aae38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1912660803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,10 +1235,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 7.75, y: 3.5}
-      - {x: -12.55, y: 3.5}
-      - {x: -12.55, y: -5.5}
-      - {x: 7.75, y: -5.5}
+    - - {x: 6.1, y: 3.5}
+      - {x: -10.95, y: 3.5}
+      - {x: -10.95, y: -5.5}
+      - {x: 6.1, y: -5.5}
 --- !u!4 &1912660806
 Transform:
   m_ObjectHideFlags: 0
@@ -1285,10 +1298,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 7.75, y: 3.5}
-      - {x: -12.55, y: 3.5}
-      - {x: -12.55, y: -5.5}
-      - {x: 7.75, y: -5.5}
+    - - {x: 6.1, y: 3.5}
+      - {x: -10.95, y: 3.5}
+      - {x: -10.95, y: -5.5}
+      - {x: 6.1, y: -5.5}
 --- !u!4 &1923149561
 Transform:
   m_ObjectHideFlags: 0
@@ -1297,7 +1310,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923149559}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3197061, y: 1.2740355, z: -5.738596}
+  m_LocalPosition: {x: 4.46, y: 1.2740355, z: -5.738596}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
