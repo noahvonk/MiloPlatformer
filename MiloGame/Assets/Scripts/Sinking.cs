@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sinking : MonoBehaviour
 {
+    [SerializeField]
     private bool sinking = false;
 
     // Update is called once per frame
@@ -12,7 +13,17 @@ public class Sinking : MonoBehaviour
         if (sinking)
         {
             //number too high
-            transform.position += new Vector3 (0, -1, 0);
+            transform.position += new Vector3 (0.0f, -0.01f, 0.0f);
+        }
+        else if (transform.position.y >= -2.26154)
+        {
+
+        }
+        else if (sinking == false)
+        {
+            //Problem is when the platform moves, you leave contact, making sinking false
+            //Debug.Log("Miracles Happen");
+            //transform.position += new Vector3 (0.0f, 0.01f, 0.0f);
         }
     }
 
