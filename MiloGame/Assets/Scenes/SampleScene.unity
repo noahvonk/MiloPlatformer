@@ -951,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpStrength: 12
-  fallMultiplier: 3
+  fallMultiplier: 1.5
   jumpMultiplier: 1
   Player: {fileID: 808034861}
 --- !u!114 &808034868
@@ -1489,7 +1489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b2d02568d7ed94a970911362aae38b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundToucher: {fileID: 808034861}
   sinking: 0
+  onGround: 1
 --- !u!1 &1740417771
 GameObject:
   m_ObjectHideFlags: 0

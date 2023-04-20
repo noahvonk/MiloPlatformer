@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Sinking : MonoBehaviour
 {
+    public GameObject groundToucher;
+    
     [SerializeField]
     private bool sinking = false;
+
+    public bool onGround;
+
+    void Start()
+    {
+        onGround = groundToucher.GetComponent<Controls>();
+    }
 
     // Update is called once per frame
     void Update()
