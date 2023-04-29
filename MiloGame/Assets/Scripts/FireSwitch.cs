@@ -29,19 +29,19 @@ public class FireSwitch : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Player")
+        if (collider.gameObject.tag == "Player" && transform.position.y >= collider.transform.position.y)
         {
             if (FireOn)
             {
                 FireOn = false;
                 gameObject.GetComponent<SpriteRenderer>().color = IceColor;
-                FireBlock.GetComponent<SpriteRenderer>().color = BlockOffColor;
+                FireBlock.SetActive(false);
             }
             else
             {
                 FireOn = true;
                 gameObject.GetComponent<SpriteRenderer>().color = FireColor;
-                FireBlock.GetComponent<SpriteRenderer>().color = FireColor;
+                FireBlock.SetActive(true);
             }
         }
     }

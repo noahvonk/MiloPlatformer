@@ -82,6 +82,21 @@ public class Jump : MonoBehaviour
         {
             controls.onGround = true;
         }
+        if (collider.gameObject.tag == "Block")
+        {
+            controls.onGround = true;
+        }
+        if (collider.gameObject.tag == "Switch")
+        {
+            controls.onGround = true;
+        }
+
+        if (collider.gameObject.tag == "Restore")
+        {
+            controls.onGround = true;
+            collider.gameObject.SetActive(false);
+            //set true after two seconds
+        }
         if (collider.gameObject.tag == "Spring")
         {
             SpringJump();
@@ -93,7 +108,15 @@ public class Jump : MonoBehaviour
         if (collider.gameObject.tag == "Ground")
         {
             controls.onGround = false;
-            //exception if you walk onto Sink
+            //exception if you walk onto other things
+        }
+        if (collider.gameObject.tag == "Block")
+        {
+            controls.onGround = false;
+        }
+        if (collider.gameObject.tag == "Switch")
+        {
+            controls.onGround = false;
         }
     }
 }

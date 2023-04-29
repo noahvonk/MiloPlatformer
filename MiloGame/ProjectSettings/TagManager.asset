@@ -8,6 +8,9 @@ TagManager:
   - Spring
   - Sink
   - Death
+  - Block
+  - Switch
+  - Restore
   layers:
   - Default
   - TransparentFX
