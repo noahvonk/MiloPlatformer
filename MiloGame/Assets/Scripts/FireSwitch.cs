@@ -12,6 +12,7 @@ public class FireSwitch : MonoBehaviour
     private bool FireOn;
 
     public GameObject FireBlock;
+    public GameObject IceBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class FireSwitch : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = FireColor;
         FireOn = true;
         FireBlock.GetComponent<SpriteRenderer>().color = FireColor;
+        IceBlock.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,12 +38,14 @@ public class FireSwitch : MonoBehaviour
                 FireOn = false;
                 gameObject.GetComponent<SpriteRenderer>().color = IceColor;
                 FireBlock.SetActive(false);
+                IceBlock.SetActive(true);
             }
             else
             {
                 FireOn = true;
                 gameObject.GetComponent<SpriteRenderer>().color = FireColor;
                 FireBlock.SetActive(true);
+                IceBlock.SetActive(false);
             }
         }
     }

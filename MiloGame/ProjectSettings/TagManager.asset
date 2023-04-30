@@ -11,6 +11,7 @@ TagManager:
   - Block
   - Switch
   - Restore
+  - Lift
   layers:
   - Default
   - TransparentFX

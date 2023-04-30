@@ -26,8 +26,10 @@ public class Sinking : MonoBehaviour
     {
         if (sinking)
         {
+            //doesn't work after dying
             //number too high
             transform.position += new Vector3(0, -speed, 0);
+            //doesn't move player after death
             GameManager.Instance.Player.transform.position += new Vector3(0, -speed, 0);
         }
         else if (transform.position.y >= maxHeight)
@@ -36,8 +38,6 @@ public class Sinking : MonoBehaviour
         }
         else if (!sinking)
         {
-            //Problem is when the platform moves, you leave contact, making sinking false
-            //Debug.Log("Miracles Happen");
             transform.position += new Vector3 (0, speed, 0);
         }
     }

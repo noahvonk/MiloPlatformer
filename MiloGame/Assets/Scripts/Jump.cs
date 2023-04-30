@@ -90,16 +90,20 @@ public class Jump : MonoBehaviour
         {
             controls.onGround = true;
         }
+        if (collider.gameObject.tag == "Lift")
+        {
+            controls.onGround = true;
+        }
 
+        if (collider.gameObject.tag == "Spring")
+        {
+            SpringJump();
+        }
         if (collider.gameObject.tag == "Restore")
         {
             controls.onGround = true;
             collider.gameObject.SetActive(false);
             //set true after two seconds
-        }
-        if (collider.gameObject.tag == "Spring")
-        {
-            SpringJump();
         }
     }
 
@@ -115,6 +119,10 @@ public class Jump : MonoBehaviour
             controls.onGround = false;
         }
         if (collider.gameObject.tag == "Switch")
+        {
+            controls.onGround = false;
+        }
+        if (collider.gameObject.tag == "Lift")
         {
             controls.onGround = false;
         }
