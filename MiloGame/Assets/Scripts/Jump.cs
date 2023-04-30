@@ -74,25 +74,13 @@ public class Jump : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Ground")
+        if (collider.gameObject.tag == "Ground" || collider.gameObject.tag == "Sink" || collider.gameObject.tag == "Block" || collider.gameObject.tag == "Switch" ||  collider.gameObject.tag == "Lift")
         {
-            controls.onGround = true;
-        }
-        if (collider.gameObject.tag == "Sink")
-        {
-            controls.onGround = true;
-        }
-        if (collider.gameObject.tag == "Block")
-        {
-            controls.onGround = true;
-        }
-        if (collider.gameObject.tag == "Switch")
-        {
-            controls.onGround = true;
-        }
-        if (collider.gameObject.tag == "Lift")
-        {
-            controls.onGround = true;
+            if (gameObject.transform.position.y >= collider.gameObject.transform.position.y)
+            {
+                //getting there, can still sidejump on upper half
+                controls.onGround = true;
+            }
         }
 
         if (collider.gameObject.tag == "Spring")

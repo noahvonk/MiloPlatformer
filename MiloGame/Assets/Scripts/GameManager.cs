@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject Player;
+    public GameObject Lock;
+    public GameObject Lock2;
     // Start is called before the first frame update
     void Start()
     {

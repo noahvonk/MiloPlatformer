@@ -12,6 +12,9 @@ TagManager:
   - Switch
   - Restore
   - Lift
+  - Key
+  - Lock
+  - Key Piece
   layers:
   - Default
   - TransparentFX
