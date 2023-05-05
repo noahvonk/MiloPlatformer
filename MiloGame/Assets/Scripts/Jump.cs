@@ -46,14 +46,20 @@ public class Jump : MonoBehaviour
         if (rigidBody.velocity.y < 0)
         {
             rigidBody.velocity += Vector2.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
+            //Debug.Log("Less Than");
         }
         // and if Codey's velocity is positive
         // then Codey is jumping and we use the jumpMulitiplier
         else if (rigidBody.velocity.y > 0)
         {
             rigidBody.velocity += Vector2.up * Physics.gravity.y * jumpMultiplier * Time.fixedDeltaTime;
+            //Debug.Log("More Than");
         }
-
+        else
+        {
+            rigidBody.velocity = Vector2.zero;
+            //Debug.Log("Perfect Harmony");
+        }
     }
 
     void ActivateJump()
@@ -76,11 +82,19 @@ public class Jump : MonoBehaviour
     {
         if (collider.gameObject.tag == "Ground" || collider.gameObject.tag == "Sink" || collider.gameObject.tag == "Block" || collider.gameObject.tag == "Switch" ||  collider.gameObject.tag == "Lift")
         {
+            controls.onGround = true;
+        /*
             if (gameObject.transform.position.y >= collider.gameObject.transform.position.y)
             {
                 //getting there, can still sidejump on upper half
-                controls.onGround = true;
+                //controls.onGround = true;
+                //Debug.Log("On Ground");
             }
+            else
+            {
+                //Debug.Log("On Wall");
+            }
+        */
         }
 
         if (collider.gameObject.tag == "Spring")

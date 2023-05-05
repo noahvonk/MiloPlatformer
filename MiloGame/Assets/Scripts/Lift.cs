@@ -13,6 +13,8 @@ public class Lift : MonoBehaviour
     [SerializeField]
     private bool moveUp;
 
+    private bool playerStick = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +40,32 @@ public class Lift : MonoBehaviour
         else
         {
             transform.position += new Vector3(0, -speed, 0);
-            //doesn't move player after death
+        }
+
+        if (playerStick && !moveUp)
+        {
             GameManager.Instance.Player.transform.position += new Vector3(0, -speed, 0);
+        } 
+        else if (playerStick && moveUp)
+        {
+            GameManager.Instance.Player.transform.position += new Vector3(0, speed, 0);
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && collision.gameObject.transform.position.y >= gameObject.transform.position.y)
+        {
+            
+            playerStick = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+
+            playerStick = false;
         }
     }
 }
