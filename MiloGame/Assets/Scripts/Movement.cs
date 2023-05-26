@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -17,6 +18,11 @@ public class Movement : MonoBehaviour
 
     [SerializeField]
     private MovementType movementType = MovementType.HorizontalOnly;
+
+    void Start()
+    {
+
+    }
 
     void FixedUpdate()
     {
@@ -44,5 +50,19 @@ public class Movement : MonoBehaviour
         // move Codey's position based on the movement vector
         // and scale it based on the time that has passed and the speed
         transform.position += movement * Time.deltaTime * speed;
+
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector3.right), 1f);
+        if (hit.collider && !hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Room"))
+        {
+            Debug.Log(hit.collider.transform.position.ToString());
+            Debug.DrawLine(transform.position, hit.transform.position, Color.red);
+            GetComponent<Controls>().touchingWall = true;
+        }
+        else
+        {
+            Debug.DrawLine(transform.position, transform.position + transform.TransformDirection(Vector3.right), Color.white);
+            GetComponent<Controls>().touchingWall = false;
+        }
     }
 }

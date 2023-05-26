@@ -31,9 +31,13 @@ public class Jump : MonoBehaviour
     {
         // if the user presses the jump button (space)
         // and Codey is on the ground
-        if (Input.GetButtonDown("Jump") && controls.onGround)
+        if (Input.GetButtonDown("Jump") && controls.onGround && !(!controls.onGround && controls.touchingWall))
         {
             ActivateJump();
+        }
+        else if ((!controls.onGround && controls.touchingWall))
+        {
+            // DO WALL JUMP
         }
     }
     // use FixedUpdate because we are calculating physics
