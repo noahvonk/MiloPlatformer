@@ -22,8 +22,7 @@ public class Movement : MonoBehaviour
     private float wallJumpingTime = 0.2f;
     private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
-    //Sweet spot somewhere between 6, 12 and 8, 16
-    private Vector2 wallJumpingPower = new Vector2(7f, 14f);
+    private Vector2 wallJumpingPower = new Vector2(6f, 12f);
 
     private Rigidbody2D rigidBody;
 
@@ -130,11 +129,20 @@ public class Movement : MonoBehaviour
 
     private void WallSlide()
     {
-        if (IsWalled() && !controls.onGround && horizontal != 0f)
+        //This requires you to alternate between right and left walls, and you can't switch without wall jumping
+        if (IsWalled())
         {
-            isWallSliding = true;
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, Mathf.Clamp(rigidBody.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            Debug.Log("onWall");
+            //Debug.Log("1/3");
+            if (!controls.onGround)
+            {
+                //Debug.Log("2/3");
+                if (horizontal != 0f)
+                {
+                    isWallSliding = true;
+                    rigidBody.velocity = new Vector2(rigidBody.velocity.x, Mathf.Clamp(rigidBody.velocity.y, -wallSlidingSpeed, float.MaxValue));
+                    //Debug.Log("onWall");
+                }
+            }
         }
         else
         {
@@ -159,7 +167,6 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
-            Debug.Log("Wall Jumped");
             isWallJumping = true;
             rigidBody.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
             wallJumpingCounter = 0f;
