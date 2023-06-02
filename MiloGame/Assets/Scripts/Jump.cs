@@ -63,7 +63,7 @@ public class Jump : MonoBehaviour
         }
         else
         {
-            rigidBody.velocity = Vector2.zero;
+            rigidBody.velocity = Vector2.up * 0;
             //Debug.Log("Perfect Harmony");
         }
     }
@@ -72,7 +72,7 @@ public class Jump : MonoBehaviour
     {
         // and apply a velocity in the up direction (0, 1, 0) with
         // a magnitude of Codey's jump strength
-        rigidBody.velocity = Vector3.up * jumpStrength;
+        rigidBody.velocity += Vector2.up * jumpStrength;
         controls.onGround = false;
     }
 
@@ -80,7 +80,7 @@ public class Jump : MonoBehaviour
     {
         // and apply a velocity in the up direction (0, 1, 0) with
         // a magnitude of Codey's jump strength
-        rigidBody.velocity = Vector3.up * (jumpStrength * 1.25f);
+        rigidBody.velocity += Vector2.up * (jumpStrength * 1.25f);
         controls.onGround = false;
     }
 
@@ -89,18 +89,6 @@ public class Jump : MonoBehaviour
         if (collider.gameObject.tag == "Ground" || collider.gameObject.tag == "Sink" || collider.gameObject.tag == "Block" || collider.gameObject.tag == "Switch" ||  collider.gameObject.tag == "Lift")
         {
             controls.onGround = true;
-        /*
-            if (gameObject.transform.position.y >= collider.gameObject.transform.position.y)
-            {
-                //getting there, can still sidejump on upper half
-                //controls.onGround = true;
-                //Debug.Log("On Ground");
-            }
-            else
-            {
-                //Debug.Log("On Wall");
-            }
-        */
         }
 
         if (collider.gameObject.tag == "Spring")
