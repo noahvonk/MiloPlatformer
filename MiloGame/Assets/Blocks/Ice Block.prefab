@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519425444275149417}
   - component: {fileID: 1519425444275149422}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1519425444452444837}
   - component: {fileID: 1519425444452444843}
   - component: {fileID: 1519425444452444842}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Block
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1519425445057849245}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ice Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}

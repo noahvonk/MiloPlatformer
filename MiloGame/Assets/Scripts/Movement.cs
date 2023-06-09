@@ -7,20 +7,22 @@ public class Movement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
-    private float jumpingPower = 16f;
+    private float jumpingPower = 12f;
     private bool isFacingRight = true;
+
+    [SerializeField] private bool jumpRestored = false;
 
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    private bool isWallSliding;
+    [SerializeField] private bool isWallSliding;
     private float wallSlidingSpeed = 2f;
 
     private bool isWallJumping;
     private float wallJumpingDirection;
     private float wallJumpingTime = 0.2f;
-    private float wallJumpingCounter;
+    [SerializeField] private float wallJumpingCounter;
     private float wallJumpingDuration = 0.4f;
     private Vector2 wallJumpingPower = new Vector2(6f, 12f);
 
@@ -43,9 +45,10 @@ public class Movement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && (IsGrounded() || jumpRestored))
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
+            jumpRestored = false;
         }
 
         if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0f)
@@ -60,7 +63,35 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidBody.velocity = new Vector2(horizontal * speed, rigidBody.velocity.y);
+        
+        if(horizontal > 0)
+        {
+            rigidBody.velocity += Vector2.right * (horizontal * speed);
+            rigidBody.velocity = Vector2.Min(rigidBody.velocity, new Vector2(15, rigidBody.velocity.y));
+        } else if (horizontal < 0)
+        {
+            rigidBody.velocity += Vector2.left * (horizontal * speed);
+            rigidBody.velocity = Vector2.Min(rigidBody.velocity, new Vector2(-15, rigidBody.velocity.y));
+        }
+        else
+        {
+            if(rigidBody.velocity.x > 1)
+            {
+                rigidBody.velocity -= Vector2.left * (horizontal * 2);
+                rigidBody.velocity = Vector2.Min(rigidBody.velocity, new Vector2(0, rigidBody.velocity.y));
+            }
+            else if(rigidBody.velocity.x < -1)
+            {
+                rigidBody.velocity -= Vector2.right * (horizontal * 2);
+                rigidBody.velocity = Vector2.Max(rigidBody.velocity, new Vector2(0, rigidBody.velocity.y));
+            }
+            else
+            {
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
+            }
+        }
+        
+
     }
 
     private void Flip()
@@ -88,19 +119,10 @@ public class Movement : MonoBehaviour
     private void WallSlide()
     {
         //This requires you to alternate between right and left walls, and you can't switch without wall jumping
-        if (IsWalled())
+        if (IsWalled() && !IsGrounded() && horizontal != 0f)
         {
-            //Debug.Log("1/3");
-            if (!controls.onGround)
-            {
-                //Debug.Log("2/3");
-                if (horizontal != 0f)
-                {
-                    isWallSliding = true;
-                    rigidBody.velocity = new Vector2(rigidBody.velocity.x, Mathf.Clamp(rigidBody.velocity.y, -wallSlidingSpeed, float.MaxValue));
-                    //Debug.Log("onWall");
-                }
-            }
+            isWallSliding = true;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, Mathf.Clamp(rigidBody.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         else
         {
@@ -125,8 +147,9 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
+            Debug.Log("BAAAAAAAAAAAAAAAAAAAA");
             isWallJumping = true;
-            rigidBody.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            rigidBody.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x * 300, wallJumpingPower.y);
             wallJumpingCounter = 0f;
 
             if (transform.localScale.x != wallJumpingDirection)
@@ -144,5 +167,19 @@ public class Movement : MonoBehaviour
     private void StopWallJumping()
     {
         isWallJumping = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag == "Spring")
+        {
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower * 1.25f);
+        }
+        if (collider.gameObject.tag == "Restore")
+        {
+            jumpRestored = true;
+            collider.gameObject.SetActive(false);
+            //set true after two seconds
+        }
     }
 }
