@@ -90,8 +90,6 @@ public class Movement : MonoBehaviour
                 rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
             }
         }
-        
-
     }
 
     private void Flip()
@@ -149,7 +147,8 @@ public class Movement : MonoBehaviour
         {
             Debug.Log("BAAAAAAAAAAAAAAAAAAAA");
             isWallJumping = true;
-            rigidBody.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x * 300, wallJumpingPower.y);
+            rigidBody.velocity = new Vector2(wallJumpingDirection * wallJumpingPower.x, wallJumpingPower.y);
+            Debug.Log(rigidBody.velocity);
             wallJumpingCounter = 0f;
 
             if (transform.localScale.x != wallJumpingDirection)
@@ -180,6 +179,10 @@ public class Movement : MonoBehaviour
             jumpRestored = true;
             collider.gameObject.SetActive(false);
             //set true after two seconds
+        }
+        if (collider.gameObject.tag == "Waterfall")
+        {
+            //speed down
         }
     }
 }
