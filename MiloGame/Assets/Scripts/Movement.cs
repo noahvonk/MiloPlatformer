@@ -49,6 +49,7 @@ public class Movement : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower);
             jumpRestored = false;
+            //also btw I need to turn off jumpRestored when I land on ground
         }
 
         if (Input.GetButtonUp("Jump") && rigidBody.velocity.y > 0f)
