@@ -16,6 +16,7 @@ TagManager:
   - Lock
   - Key Piece
   - Room
+  - Wall
   layers:
   - Default
   - TransparentFX
