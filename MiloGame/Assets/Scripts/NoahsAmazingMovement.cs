@@ -12,18 +12,20 @@ public class NoahsAmazingMovement : MonoBehaviour
     /// </summary>
     public void Update()
     {
+        Move();
 
         if (dir == direction.RIGHT)
         {
 
             int mask = LayerMask.GetMask("Wall");
-            _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(0, 1), 1, mask);
-
+            _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(1f, 0), .6f, mask);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(.6f, 0, 0));
         }
         else
         {
             int mask = LayerMask.GetMask("Wall");
-            _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(0, -1), 1, mask);
+            _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(-1f, 0), .6f, mask);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(-.6f, 0, 0));
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -31,7 +33,6 @@ public class NoahsAmazingMovement : MonoBehaviour
             Jump();
         }
 
-        Move();
     }
 
     /// <summary>
@@ -39,59 +40,28 @@ public class NoahsAmazingMovement : MonoBehaviour
     /// </summary>
     private void Move()
     {
+        Vector2 velo;
         float move = Input.GetAxis("Horizontal");
+        if (_WallJumping)
+        {
+            velo = new(move * _maxSpeed/3, _rb.velocity.y);
+        }
+        else
+        {
+            velo = new(move * _maxSpeed, _rb.velocity.y);
+        }
+        
 
-        Vector2 velo = new(move, 0);
+        if(move > 0)
+        {
+            dir = direction.RIGHT;
+        }
+        else if (move < 0)
+        {
+            dir = direction.LEFT;
+        }
 
-        velo.x = move * Time.deltaTime * _maxSpeed;
-
-        _rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + velo * Time.deltaTime * _maxSpeed);
-
-        //if (move != 0)
-        //{
-        //    Vector2 moveDir = Vector2.zero;
-
-        //    // check if we are at or going to be at max speed
-        //    Vector2 velo = _rb.velocity.Abs();
-        //    if (velo.x == _maxSpeed)
-        //    {
-        //        return;
-        //    }
-        //    else if (velo.x >= _maxSpeed + move)
-        //    {
-        //        _rb.velocity = new Vector2(_maxSpeed * move, _rb.velocity.y);
-        //    }
-        //    else
-        //    {
-        //        moveDir = Vector2.right * move * _speedIncrement * Time.deltaTime;
-        //        _rb.velocity += moveDir;
-        //    }
-        //}
-        //else
-        //{
-        //    Vector2 velo = _rb.velocity;
-        //    if (velo.Abs().x != 0)
-        //    {
-        //        if (velo.x > 0)
-        //        {
-        //            velo.x -= _speedIncrement * 2 * Time.deltaTime;
-        //            if(velo.x < 0)
-        //            {
-        //                velo.x = 0;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            velo.x += _speedIncrement * 2 * Time.deltaTime;
-        //            if (velo.x > 0)
-        //            {
-        //                velo.x = 0;
-        //            }
-        //        }
-        //    }
-        //    _rb.velocity = velo;
-
-        //}
+        _rb.velocity = velo;
     }
     /// <summary>
     /// Checks for jump input and updates the physics system
@@ -100,16 +70,29 @@ public class NoahsAmazingMovement : MonoBehaviour
     {
         if (_grounded)
         {
-            _curJump = _jumpStrength;
+
+            _rb.velocity +=  Vector2.up * _jumpStrength;
+            Debug.Log("Jumping: " + _rb.velocity.ToString());
         }
-    }
-
-    /// <summary>
-    /// Called to move the player downward when not on the ground
-    /// </summary>
-    private void ApplyGravity()
-    {
-
+        else
+        {
+            Debug.Log(_hit.collider);
+            if(_hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
+            {
+                if(dir == direction.LEFT)
+                {
+                    _rb.velocity = Vector2.zero;
+                    _rb.AddForce(new Vector2(_wallJumpStrength * _maxSpeed * 20, 300));
+                }
+                else if (dir == direction.RIGHT)
+                {
+                    _rb.velocity = Vector2.zero;
+                    _rb.AddForce(new Vector2(-_wallJumpStrength * _maxSpeed * 20, 300));
+                }
+                _WallJumping = true;
+                Debug.Log("wall jumping");
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -123,18 +106,24 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (_WallJumping)
+        {
+            _WallJumping = false;
+        }
         if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.position.y < _ground.y)
         {
             _grounded = true;
+
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.position.y < _ground.y)
         {
             _grounded = false;
-        }
+        }  
     }
 
 
@@ -165,13 +154,15 @@ public class NoahsAmazingMovement : MonoBehaviour
     private Vector3 _ground = Vector3.zero;
 
     private direction dir = direction.RIGHT;
-    
+
+    [SerializeField]
     private bool _grounded = false;
 
     private Rigidbody2D _rb;
 
     RaycastHit2D _hit;
 
+    private bool _WallJumping = false;
     float _curJump = 0f;
 
 
