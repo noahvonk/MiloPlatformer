@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,6 @@ public class NoahsAmazingMovement : MonoBehaviour
 
         if (dir == direction.RIGHT)
         {
-
             int mask = LayerMask.GetMask("Wall");
             _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(1f, 0), .6f, mask);
             Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(.6f, 0, 0));
@@ -51,7 +51,6 @@ public class NoahsAmazingMovement : MonoBehaviour
             velo = new(move * _maxSpeed, _rb.velocity.y);
         }
         
-
         if(move > 0)
         {
             dir = direction.RIGHT;
@@ -60,6 +59,17 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
             dir = direction.LEFT;
         }
+
+        if (!_grounded && _inWaterfall && velo.y > _MaxWaterfallDropSpeed)
+        {
+            Debug.Log("Milo is stinky, but getting clean in the waterfall");
+            velo.y -= _WaterfallFallSpeedIncrement;
+        }
+        else if(!_grounded && _inWaterfall)
+        {
+            velo.y = -_MaxWaterfallDropSpeed;
+        }
+
 
         _rb.velocity = velo;
     }
@@ -70,7 +80,6 @@ public class NoahsAmazingMovement : MonoBehaviour
     {
         if (_grounded)
         {
-
             _rb.velocity +=  Vector2.up * _jumpStrength;
             Debug.Log("Jumping: " + _rb.velocity.ToString());
         }
@@ -106,28 +115,45 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collided with item with tag: " + collision.collider.tag + "\nPlayer Pos = " + transform.position.ToString() + " and colliders pos = " + collision.collider.transform.position);
         if (_WallJumping)
         {
             _WallJumping = false;
         }
-        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.position.y < _ground.y)
+        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.localPosition.y >= _ground.y)
         {
+            Debug.Log("Entering Ground");
             _grounded = true;
+        }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Waterfall"))
+        {
+            _inWaterfall = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Waterfall"))
+        {
+            _inWaterfall = false;
         }
     }
 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.position.y < _ground.y)
+        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.localPosition.y >= _ground.y)
         {
+            Debug.Log("Leaving Ground");
             _grounded = false;
-        }  
+        }
+
     }
-
-
-
 
     // serialized fields
 
@@ -146,7 +172,11 @@ public class NoahsAmazingMovement : MonoBehaviour
     [SerializeField]
     private float _wallJumpStrength = 10f;
 
+    [SerializeField]
+    private float _WaterfallFallSpeedIncrement = 2f;
 
+    [SerializeField]
+    private float _MaxWaterfallDropSpeed = 10f;
     // private fields
 
     private float _appliedForce = 0.0f;
@@ -165,6 +195,8 @@ public class NoahsAmazingMovement : MonoBehaviour
     private bool _WallJumping = false;
     float _curJump = 0f;
 
+    [SerializeField]
+    private bool _inWaterfall = false;
 
     
     // enums
