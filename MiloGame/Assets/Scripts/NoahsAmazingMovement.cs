@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class NoahsAmazingMovement : MonoBehaviour
 {
+
 
     /// <summary>
     /// Updates all other functions each frame
@@ -44,11 +46,34 @@ public class NoahsAmazingMovement : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         if (_WallJumping)
         {
-            velo = new(move * _maxSpeed/3, _rb.velocity.y);
+            if(move > 0)
+            {
+                velo = new(Mathf.Max(_rb.velocity.x * (move), _wallJumpStrength), _rb.velocity.y);
+            }
+            else if(move < 0)
+            {
+                velo = new(Mathf.Min(_rb.velocity.x * (move ), -_wallJumpStrength), _rb.velocity.y);
+            }
+            else
+            {
+                velo = new(Mathf.MoveTowards(_rb.velocity.x, 0, 0.1f), _rb.velocity.y);
+            }
+            
         }
         else
         {
-            velo = new(move * _maxSpeed, _rb.velocity.y);
+            if (move > 0)
+            {
+                velo = new(Mathf.Max(_rb.velocity.x * (move), _maxSpeed), _rb.velocity.y);
+            }
+            else if (move < 0)
+            {
+                velo = new(Mathf.Min(_rb.velocity.x * (move), -_maxSpeed), _rb.velocity.y);
+            }
+            else
+            {
+                velo = new(0, _rb.velocity.y);
+            }
         }
         
         if(move > 0)
@@ -70,7 +95,7 @@ public class NoahsAmazingMovement : MonoBehaviour
             velo.y = -_MaxWaterfallDropSpeed;
         }
 
-
+        Debug.Log(velo);
         _rb.velocity = velo;
     }
     /// <summary>
@@ -86,17 +111,20 @@ public class NoahsAmazingMovement : MonoBehaviour
         else
         {
             Debug.Log(_hit.collider);
-            if(_hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
+            if( !_WallJumping && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
             {
+                if(dir == direction.LEFT) dir = direction.RIGHT;
+                else if(dir == direction.RIGHT) dir = direction.LEFT;
+
                 if(dir == direction.LEFT)
                 {
-                    _rb.velocity = Vector2.zero;
-                    _rb.AddForce(new Vector2(_wallJumpStrength * _maxSpeed * 20, 300));
+                    _rb.velocity = new Vector2(-_rb.velocity.x, 0);
+                    _rb.AddRelativeForce(new Vector2(-_wallJumpStrength, 8), ForceMode2D.Impulse);
                 }
                 else if (dir == direction.RIGHT)
                 {
-                    _rb.velocity = Vector2.zero;
-                    _rb.AddForce(new Vector2(-_wallJumpStrength * _maxSpeed * 20, 300));
+                    _rb.velocity = new Vector2(-_rb.velocity.x, 0);
+                    _rb.AddRelativeForce(new Vector2(_wallJumpStrength, 8), ForceMode2D.Impulse);
                 }
                 _WallJumping = true;
                 Debug.Log("wall jumping");
@@ -110,21 +138,16 @@ public class NoahsAmazingMovement : MonoBehaviour
         SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
         _rb = GetComponentInChildren<Rigidbody2D>();
         _ground = new Vector3(0, renderer.localBounds.size.y, transform.position.z);
+        _floorCollider = GetComponentInChildren<BoxCollider2D>();
+        enter += OnBoxCollidedEntered;
+        GetComponentInChildren<ContactReporter>()._enteredReportBacks.Add(enter);
+        exit += OnBoxCollidedExited;
+        GetComponentInChildren<ContactReporter>()._exitedReportBacks.Add(exit);
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collided with item with tag: " + collision.collider.tag + "\nPlayer Pos = " + transform.position.ToString() + " and colliders pos = " + collision.collider.transform.position);
-        if (_WallJumping)
-        {
-            _WallJumping = false;
-        }
-        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.localPosition.y >= _ground.y)
-        {
-            Debug.Log("Entering Ground");
-            _grounded = true;
-        }
 
     }
 
@@ -144,16 +167,32 @@ public class NoahsAmazingMovement : MonoBehaviour
         }
     }
 
+    private void OnBoxCollidedEntered()
+    {
+        Debug.Log("Entering Ground");
+        _grounded = true;
+        if (_WallJumping)
+        {
+            _WallJumping = false;
+        }
+    }
+
+    private void OnBoxCollidedExited()
+    {
+        Debug.Log("Leaving Ground");
+        _grounded = false;
+    }
+
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground") && collision.collider.gameObject.transform.localPosition.y >= _ground.y)
-        {
-            Debug.Log("Leaving Ground");
-            _grounded = false;
-        }
 
     }
+
+    // unity actions
+    UnityAction enter;
+    UnityAction exit;
+
 
     // serialized fields
 
@@ -198,7 +237,7 @@ public class NoahsAmazingMovement : MonoBehaviour
     [SerializeField]
     private bool _inWaterfall = false;
 
-    
+    private BoxCollider2D _floorCollider;
     // enums
 
     enum direction { LEFT, RIGHT}

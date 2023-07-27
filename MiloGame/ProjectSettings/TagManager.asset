@@ -18,6 +18,7 @@ TagManager:
   - Room
   - Wall
   - Waterfall
+  - FloorCheck
   layers:
   - Default
   - TransparentFX
