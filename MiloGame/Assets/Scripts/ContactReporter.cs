@@ -48,7 +48,7 @@ public class ContactReporter : MonoBehaviour
 
     [SerializeField] private List<string> _comparatorTags = new();
 
-    public List<UnityAction>? _enteredReportBacks = new();
-    public List<UnityAction>? _exitedReportBacks = new();
+    public List<UnityAction?> _enteredReportBacks = new();
+    public List<UnityAction?> _exitedReportBacks = new();
     private Collider2D _collider;
 }

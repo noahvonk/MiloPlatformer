@@ -8,19 +8,25 @@ public class FireSwitch : MonoBehaviour
     public Color IceColor;
     public Color BlockOffColor;
 
-    [SerializeField]
-    private bool FireOn;
+    public bool FireOn;
 
-    public GameObject FireBlock;
-    public GameObject IceBlock;
+    public List<GameObject> FireBlock;
+    public List<GameObject> IceBlock;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<SpriteRenderer>().color = IceColor;
         FireOn = false;
-        IceBlock.GetComponent<SpriteRenderer>().color = IceColor;
-        FireBlock.SetActive(false);
+        foreach(GameObject block in IceBlock)
+        {
+            block.GetComponent<SpriteRenderer>().color = IceColor;
+        }
+
+        foreach (GameObject block in FireBlock)
+        {
+            block.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -37,15 +43,27 @@ public class FireSwitch : MonoBehaviour
             {
                 FireOn = false;
                 gameObject.GetComponent<SpriteRenderer>().color = IceColor;
-                FireBlock.SetActive(false);
-                IceBlock.SetActive(true);
+                foreach (GameObject block in FireBlock)
+                {
+                    block.SetActive(false);
+                }
+                foreach (GameObject block in IceBlock)
+                {
+                    block.SetActive(true);
+                }
             }
             else
             {
                 FireOn = true;
                 gameObject.GetComponent<SpriteRenderer>().color = FireColor;
-                FireBlock.SetActive(true);
-                IceBlock.SetActive(false);
+                foreach (GameObject block in FireBlock)
+                {
+                    block.SetActive(true);
+                }
+                foreach (GameObject block in IceBlock)
+                {
+                    block.SetActive(false);
+                }
             }
         }
     }
