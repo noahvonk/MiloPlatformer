@@ -680,7 +680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4034356126983210799, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4034356126983210787, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
@@ -2708,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4034356126983210799, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4034356126983210787, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
@@ -3264,6 +3264,10 @@ PrefabInstance:
     - target: {fileID: 2635748400769359894, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2678997073006373605, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
+      propertyPath: _maxSpeed
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4492890794796333083, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_RootOrder

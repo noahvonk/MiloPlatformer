@@ -122,6 +122,17 @@ public class NoahsAmazingMovement : MonoBehaviour
             //Debug.Log(_rb.velocity + "Test7");
         }
 
+        if (!_grounded && _upWaterfall && velo.y > _MaxWaterfallDropSpeed)
+        {
+            velo.y += _WaterfallFallSpeedIncrement;
+            Debug.Log("First if");
+        }
+        else if (!_grounded && _upWaterfall)
+        {
+            velo.y = _MaxWaterfallDropSpeed;
+            Debug.Log("Second if");
+        }
+
         //Debug.Log(velo);
         _rb.velocity = velo;
         //Debug.Log(_rb.velocity + "Test8");
@@ -224,6 +235,12 @@ public class NoahsAmazingMovement : MonoBehaviour
         if (collision.CompareTag("Waterfall"))
         {
             _inWaterfall = true;
+            Debug.Log("Waterfall");
+        }
+        if (collision.CompareTag("Reverse"))
+        {
+            _upWaterfall = true;
+            Debug.Log("Reverse Waterfall");
         }
         //Debug.Log(_rb.velocity + "TriggerEnter");
     }
@@ -233,6 +250,10 @@ public class NoahsAmazingMovement : MonoBehaviour
         if (collision.CompareTag("Waterfall"))
         {
             _inWaterfall = false;
+        }
+        if (collision.CompareTag("Reverse"))
+        {
+            _upWaterfall = false;
         }
         //Debug.Log(_rb.velocity + "TriggerExit");
     }
@@ -321,6 +342,9 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     [SerializeField]
     private bool _inWaterfall = false;
+
+    [SerializeField]
+    private bool _upWaterfall = false;
 
     private BoxCollider2D _floorCollider;
     // enums
