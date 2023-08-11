@@ -34,7 +34,7 @@ public class NoahsAmazingMovement : MonoBehaviour
             int mask = LayerMask.GetMask("Wall");
             _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(1f, 0), .6f, mask);
             Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(.6f, 0, 0));
-            Debug.Log(_rb.velocity + "Test4");
+            //Debug.Log(_rb.velocity + "Test4");
             if (!_WallJumping)
             {
                 _canClimb = true;
@@ -47,7 +47,7 @@ public class NoahsAmazingMovement : MonoBehaviour
             int mask = LayerMask.GetMask("Wall");
             _hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), new Vector2(-1f, 0), .6f, mask);
             Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, 0), new Vector3(-.6f, 0, 0));
-            Debug.Log(_rb.velocity + "Test5");
+            //Debug.Log(_rb.velocity + "Test5");
             if (!_WallJumping)
             {
                 _canClimb = true;
@@ -66,7 +66,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && _canClimb && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
         {
 
-            Debug.Log("In Climbing position");
+            //Debug.Log("In Climbing position");
             velo = Climb();
             _rb.gravityScale = 0;
 
@@ -88,7 +88,7 @@ public class NoahsAmazingMovement : MonoBehaviour
                 {
                     velo = _rb.velocity;
                 }
-            Debug.Log(_rb.velocity + "Test2");
+            //Debug.Log(_rb.velocity + "Test2");
             }
             else
             {
@@ -104,7 +104,7 @@ public class NoahsAmazingMovement : MonoBehaviour
                 {
                     velo = new(0, _rb.velocity.y);
                 }
-            Debug.Log(_rb.velocity + "Test3");
+            //Debug.Log(_rb.velocity + "Test3");
             }
 
         }
@@ -112,19 +112,19 @@ public class NoahsAmazingMovement : MonoBehaviour
 
         if (!_grounded && _inWaterfall && velo.y > _MaxWaterfallDropSpeed)
         {
-            Debug.Log("Milo is stinky, but getting clean in the waterfall");
+            //Debug.Log("Milo is stinky, but getting clean in the waterfall");
             velo.y -= _WaterfallFallSpeedIncrement;
-            Debug.Log(_rb.velocity + "Test6");
+            //Debug.Log(_rb.velocity + "Test6");
         }
         else if(!_grounded && _inWaterfall)
         {
             velo.y = -_MaxWaterfallDropSpeed;
-            Debug.Log(_rb.velocity + "Test7");
+            //Debug.Log(_rb.velocity + "Test7");
         }
 
         //Debug.Log(velo);
         _rb.velocity = velo;
-        Debug.Log(_rb.velocity + "Test8");
+        //Debug.Log(_rb.velocity + "Test8");
     }
     /// <summary>
     /// Checks for jump input and updates the physics system
@@ -134,11 +134,11 @@ public class NoahsAmazingMovement : MonoBehaviour
         if (_grounded)
         {
             _rb.velocity +=  Vector2.up * _jumpStrength;
-            Debug.Log("Jumping: " + _rb.velocity.ToString());
+            //Debug.Log("Jumping: " + _rb.velocity.ToString());
         }
         else
         {
-            Debug.Log(_hit.collider);
+            //Debug.Log(_hit.collider);
             if( !_WallJumping && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
             {
                 _canClimb = false;
@@ -157,7 +157,7 @@ public class NoahsAmazingMovement : MonoBehaviour
                     StartCoroutine(WallJumpEnumerator());
                 }
                 _WallJumping = true;
-                Debug.Log("wall jumping");
+                //Debug.Log("wall jumping");
             }
         }
     }
@@ -195,9 +195,9 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     private Vector2 Climb()
     {
-        Debug.Log("Milo is smell");
+        //Debug.Log("Milo is smell");
         return new Vector2(_rb.velocity.x, _climbSpeed);
-        Debug.Log(_rb.velocity + "Climb");
+        //Debug.Log(_rb.velocity + "Climb");
     }
 
     // Start is called before the first frame update
@@ -225,7 +225,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
             _inWaterfall = true;
         }
-        Debug.Log(_rb.velocity + "TriggerEnter");
+        //Debug.Log(_rb.velocity + "TriggerEnter");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -234,12 +234,12 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
             _inWaterfall = false;
         }
-        Debug.Log(_rb.velocity + "TriggerExit");
+        //Debug.Log(_rb.velocity + "TriggerExit");
     }
 
     private void OnBoxCollidedEntered()
     {
-        Debug.Log("Entering Ground");
+        //Debug.Log("Entering Ground");
         _grounded = true;
         if (_WallJumping)
         {
@@ -249,7 +249,7 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     private void OnBoxCollidedExited()
     {
-        Debug.Log("Leaving Ground");
+        //Debug.Log("Leaving Ground");
         _grounded = false;
     }
 

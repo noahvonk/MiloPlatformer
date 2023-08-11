@@ -20,6 +20,7 @@ public class ContactReporter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Entererd");
         foreach(string s in _comparatorTags)
         {
             if (collision.CompareTag(s))
