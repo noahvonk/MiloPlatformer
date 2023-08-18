@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -218,10 +219,8 @@ public class NoahsAmazingMovement : MonoBehaviour
         _rb = GetComponentInChildren<Rigidbody2D>();
         _ground = new Vector3(0, renderer.localBounds.size.y, transform.position.z);
         _floorCollider = GetComponentInChildren<BoxCollider2D>();
-        enter += OnBoxCollidedEntered;
-        GetComponentInChildren<ContactReporter>()._enteredReportBacks.Add(enter);
-        exit += OnBoxCollidedExited;
-        GetComponentInChildren<ContactReporter>()._exitedReportBacks.Add(exit);
+        GetComponentInChildren<ContactReporter>()._enteredReportBacks.Add(OnBoxCollidedEntered);
+        GetComponentInChildren<ContactReporter>()._exitedReportBacks.Add(OnBoxCollidedExited);
     }
 
 
@@ -258,7 +257,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         //Debug.Log(_rb.velocity + "TriggerExit");
     }
 
-    private void OnBoxCollidedEntered()
+    private void OnBoxCollidedEntered(Collider2D collider)
     {
         //Debug.Log("Entering Ground");
         _grounded = true;
@@ -268,7 +267,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         }
     }
 
-    private void OnBoxCollidedExited()
+    private void OnBoxCollidedExited(Collider2D collider)
     {
         //Debug.Log("Leaving Ground");
         _grounded = false;
@@ -328,8 +327,14 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     private direction dir = direction.RIGHT;
 
+    public static bool grounded
+    {
+        get => _grounded;
+        set => _grounded = value;
+    }
+
     [SerializeField]
-    private bool _grounded = false;
+    private static bool _grounded = false;
 
     private Rigidbody2D _rb;
 

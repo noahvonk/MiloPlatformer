@@ -228,14 +228,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedIncrement: 15
-  _maxSpeed: 10
+  _maxSpeed: 5.5
   _jumpStrength: 8
   _gravity: 9.8
   _wallJumpStrength: 10
+  _climbSpeed: 10
   _WaterfallFallSpeedIncrement: 2
   _MaxWaterfallDropSpeed: 10
   _grounded: 1
   _inWaterfall: 0
+  _upWaterfall: 0
 --- !u!114 &837931441857349026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _comparatorTags:
   - Ground
+  - Block
+  - Lift
+  - Spring
 --- !u!1 &7738727831027824713
 GameObject:
   m_ObjectHideFlags: 0

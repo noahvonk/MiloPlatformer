@@ -18,6 +18,10 @@ public class ContactReporter : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Checks for collisions and invokes callbacks
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Entererd");
@@ -25,23 +29,27 @@ public class ContactReporter : MonoBehaviour
         {
             if (collision.CompareTag(s))
             {
-                foreach(UnityAction a in _enteredReportBacks)
+                foreach(ContactReport a in _enteredReportBacks)
                 {
-                    a?.Invoke();
+                    a?.Invoke(collision);
                 }
             }
         }
     }
 
+    /// <summary>
+    /// On exit, invoke all listeners
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         foreach (string s in _comparatorTags)
         {
             if (collision.CompareTag(s))
             {
-                foreach (UnityAction a in _exitedReportBacks)
+                foreach (ContactReport a in _exitedReportBacks)
                 {
-                    a?.Invoke();
+                    a?.Invoke(collision);
                 }
             }
         }
@@ -49,7 +57,8 @@ public class ContactReporter : MonoBehaviour
 
     [SerializeField] private List<string> _comparatorTags = new();
 
-    public List<UnityAction?> _enteredReportBacks = new();
-    public List<UnityAction?> _exitedReportBacks = new();
+    public delegate void ContactReport(Collider2D collider);
+    public List<ContactReport?> _enteredReportBacks = new();
+    public List<ContactReport?> _exitedReportBacks = new();
     private Collider2D _collider;
 }

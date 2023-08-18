@@ -31,13 +31,12 @@ public class SwitchController : MonoBehaviour
 
     private void GetChildrenAndUpdateListeners()
     {
-        OnEnterTrigger += FlipBlockActivity;
         foreach (Transform child in transform)
         {
             //print("Foreach loop: " + child);
             var contactReporter = child.GetComponentInChildren<ContactReporter>();
             _contactList.Add(contactReporter);
-            contactReporter._enteredReportBacks.Add(OnEnterTrigger);
+            contactReporter._enteredReportBacks.Add(FlipBlockActivity);
         }
 
         
@@ -50,11 +49,11 @@ public class SwitchController : MonoBehaviour
             contactReporter._enteredReportBacks.Clear();
         }
 
-        OnEnterTrigger -= FlipBlockActivity;
+        //OnEnterTrigger -= FlipBlockActivity;
     }
 
 
-    private void FlipBlockActivity()
+    private void FlipBlockActivity(Collider2D collision)
     {
         foreach (ContactReporter ct in _contactList)
         {
