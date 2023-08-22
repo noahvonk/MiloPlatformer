@@ -6,6 +6,8 @@ public class JumpRestore : MonoBehaviour
 {
     private bool used = false;
     public float waitTime = 3;
+    
+    public NoahsAmazingMovement NoahsAmazingMovement;
     // add a gameobject variable for the object to be deactivated
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class JumpRestore : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             if (!used && !NoahsAmazingMovement.grounded)
-                NoahsAmazingMovement.grounded = true;
+                NoahsAmazingMovement.restored = true;
                 StartCoroutine(RespawnTime());
                 //deactivate gameobject
         }

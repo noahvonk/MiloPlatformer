@@ -336,6 +336,14 @@ PrefabInstance:
       value: Fire_Ice Switch (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.27637005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.48681498
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -1265,6 +1273,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
@@ -2160,6 +2172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block
@@ -2720,7 +2736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4045116581767766786, guid: ba8891094b6fc413885441bda670ca67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.85
+      value: -15.02
       objectReference: {fileID: 0}
     - target: {fileID: 4045116581767766786, guid: ba8891094b6fc413885441bda670ca67, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2850,6 +2866,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_Ice Switch (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.25076985
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.49961507
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba8891094b6fc413885441bda670ca67, type: 3}
 --- !u!1 &1047083692 stripped
@@ -2925,17 +2949,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8831152640024899257, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
+      propertyPath: _comparatorTags.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831152640024899257, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
+      propertyPath: _comparatorTags.Array.data[4]
+      value: Switch
+      objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.29
+      value: 44.41
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.21
+      value: -5.77
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4080,6 +4112,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_Ice Switch
       objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.26061344
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.49469328
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba8891094b6fc413885441bda670ca67, type: 3}
 --- !u!1 &1365132421
@@ -4165,6 +4205,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block (3)
@@ -4373,6 +4417,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block (1)
@@ -4847,6 +4895,25 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1159006106}
+--- !u!1 &1695837113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6196046783531826379, guid: eb1f24686bcaf48849e6a5be164ee9b0, type: 3}
+  m_PrefabInstance: {fileID: 2058243126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1695837117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695837113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296f6299d3be30443877f87869a888cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 3
+  NoahsAmazingMovement: {fileID: 1866849521}
 --- !u!4 &1703685983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4045116581767766786, guid: ba8891094b6fc413885441bda670ca67, type: 3}
@@ -5462,6 +5529,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4034356126983210785, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
   m_PrefabInstance: {fileID: 1926979519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1866849521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2678997073006373605, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
+  m_PrefabInstance: {fileID: 1057554600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90562c130f013c42ae9b0e834eb73f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1884930829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1519425445057849245, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
@@ -5611,6 +5689,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block (4)
@@ -5804,6 +5886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block (5)
@@ -6206,7 +6292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4034356126983210799, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c5bffe027f37411e9bd12a7469eab9e, type: 3}
@@ -6585,6 +6671,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire_Ice Switch (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.2529831
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.49850845
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba8891094b6fc413885441bda670ca67, type: 3}
 --- !u!4 &2053728140 stripped
@@ -6829,6 +6923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1616350499}
     m_Modifications:
+    - target: {fileID: 1519425444452444836, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1519425445057849244, guid: f2800b40ef4d54cab9cb678b5c4e4ef3, type: 3}
       propertyPath: m_Name
       value: Ice Block (2)
@@ -7021,6 +7119,14 @@ PrefabInstance:
     - target: {fileID: 4045116581767766789, guid: ba8891094b6fc413885441bda670ca67, type: 3}
       propertyPath: m_Name
       value: Fire_Ice Switch (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Size.y
+      value: 0.24806118
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833815292322152729, guid: ba8891094b6fc413885441bda670ca67, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5009694
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba8891094b6fc413885441bda670ca67, type: 3}

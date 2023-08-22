@@ -63,7 +63,11 @@ public class NoahsAmazingMovement : MonoBehaviour
             _WallJumping = false;
         }
 
-
+        //***LOOK HERE, DELETE????***
+        //***LOOK HERE, DELETE????***
+        //***LOOK HERE, DELETE????***
+        //***LOOK HERE, DELETE????***
+        //***LOOK HERE, DELETE????***
         if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && _canClimb && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
         {
 
@@ -143,10 +147,11 @@ public class NoahsAmazingMovement : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        if (_grounded)
+        if (_grounded || restored)
         {
             _rb.velocity +=  Vector2.up * _jumpStrength;
             //Debug.Log("Jumping: " + _rb.velocity.ToString());
+            restored = false;
         }
         else
         {
@@ -350,6 +355,8 @@ public class NoahsAmazingMovement : MonoBehaviour
 
     [SerializeField]
     private bool _upWaterfall = false;
+
+    public bool restored = false;
 
     private BoxCollider2D _floorCollider;
     // enums
