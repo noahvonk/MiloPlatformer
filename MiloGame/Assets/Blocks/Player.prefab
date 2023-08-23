@@ -234,10 +234,10 @@ MonoBehaviour:
   _wallJumpStrength: 10
   _climbSpeed: 10
   _WaterfallFallSpeedIncrement: 2
-  _MaxWaterfallDropSpeed: 10
-  _grounded: 1
+  _MaxWaterfallDropSpeed: 4
   _inWaterfall: 0
   _upWaterfall: 0
+  restored: 0
 --- !u!114 &837931441857349026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +397,7 @@ MonoBehaviour:
   - Block
   - Lift
   - Spring
+  - Switch
 --- !u!1 &7738727831027824713
 GameObject:
   m_ObjectHideFlags: 0

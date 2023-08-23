@@ -173,7 +173,7 @@ public class Movement : MonoBehaviour
     {
         if (collider.gameObject.tag == "Spring")
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower * 1.25f);
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpingPower * 0.9f);
         }
         if (collider.gameObject.tag == "Restore")
         {
