@@ -127,12 +127,12 @@ public class NoahsAmazingMovement : MonoBehaviour
             //Debug.Log(_rb.velocity + "Test7");
         }
 
-        if (!_grounded && _upWaterfall && velo.y > _MaxWaterfallDropSpeed)
-        {
-            velo.y += _WaterfallFallSpeedIncrement;
-            Debug.Log("First if");
-        }
-        else if (!_grounded && _upWaterfall)
+        // if (!_grounded && _upWaterfall && velo.y > _MaxWaterfallDropSpeed)
+        // {
+        //     velo.y += _WaterfallFallSpeedIncrement;
+        //     Debug.Log("First if");
+        // }
+        if (_upWaterfall)
         {
             velo.y = _MaxWaterfallDropSpeed;
             Debug.Log("Second if");

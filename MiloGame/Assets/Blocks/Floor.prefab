@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4034356126983210798}
   - component: {fileID: 4034356126983210784}
   - component: {fileID: 4034356126983210787}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4034356126983210799}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.1517, y: -3.6077, z: 0}
   m_LocalScale: {x: 30.325588, y: 3.7470896, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.07206106, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.058823586, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
