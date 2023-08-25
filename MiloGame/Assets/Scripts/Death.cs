@@ -7,7 +7,7 @@ public class Death : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Death")
+        if (collider.gameObject.tag == "Death" || collider.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

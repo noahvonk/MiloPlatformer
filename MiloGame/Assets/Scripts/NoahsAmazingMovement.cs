@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class NoahsAmazingMovement : MonoBehaviour
 {
@@ -245,6 +246,17 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
             _upWaterfall = true;
             Debug.Log("Reverse Waterfall");
+        }
+        if (collision.CompareTag("Restore"))
+        {
+            var jumpRestore = collision.transform.GetComponent<JumpRestore>();
+            if (!jumpRestore.used && !grounded)
+            {
+                restored = true;
+                StartCoroutine(jumpRestore.RespawnTime());
+                collision.gameObject.SetActive(false);
+            }
+            //deactivate gameobject
         }
         //Debug.Log(_rb.velocity + "TriggerEnter");
     }

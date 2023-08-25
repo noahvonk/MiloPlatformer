@@ -20,6 +20,7 @@ TagManager:
   - Waterfall
   - FloorCheck
   - Reverse
+  - Enemy
   layers:
   - Default
   - TransparentFX
