@@ -12,6 +12,8 @@ public class Lift : MonoBehaviour
     private float speed = 0.02f;
     [SerializeField]
     private bool moveUp;
+    [SerializeField]
+    private Rigidbody2D rb;
 
     private bool playerStick = false;
 
@@ -42,20 +44,20 @@ public class Lift : MonoBehaviour
             transform.position += new Vector3(0, -speed, 0);
         }
 
-        if (playerStick && !moveUp)
-        {
-            GameManager.Instance.Player.transform.position += new Vector3(0, -speed, 0);
-        } 
-        else if (playerStick && moveUp)
-        {
-            GameManager.Instance.Player.transform.position += new Vector3(0, speed, 0);
-        }
+        //if (playerStick && !moveUp)
+        //{
+        //    GameManager.Instance.Player.transform.position += new Vector3(0, speed, 0);
+        //} 
+        //else if (playerStick && moveUp)
+        //{
+        //    GameManager.Instance.Player.transform.position += new Vector3(0, speed, 0);
+        //}
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && collision.gameObject.transform.position.y >= gameObject.transform.position.y)
         {
-            
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
             playerStick = true;
         }
     }
@@ -64,7 +66,7 @@ public class Lift : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
             playerStick = false;
         }
     }

@@ -64,11 +64,6 @@ public class NoahsAmazingMovement : MonoBehaviour
             _WallJumping = false;
         }
 
-        //***LOOK HERE, DELETE????***
-        //***LOOK HERE, DELETE????***
-        //***LOOK HERE, DELETE????***
-        //***LOOK HERE, DELETE????***
-        //***LOOK HERE, DELETE????***
         if ((Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && _canClimb && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
         {
 
@@ -150,6 +145,7 @@ public class NoahsAmazingMovement : MonoBehaviour
     {
         if (_grounded || restored)
         {
+            _rb.velocity = new Vector2(_rb.velocity.x, 0);
             _rb.velocity +=  Vector2.up * _jumpStrength;
             //Debug.Log("Jumping: " + _rb.velocity.ToString());
             restored = false;
@@ -257,6 +253,10 @@ public class NoahsAmazingMovement : MonoBehaviour
                 collision.gameObject.SetActive(false);
             }
             //deactivate gameobject
+        }
+        if (collision.CompareTag("Lift"))
+        {
+            
         }
         //Debug.Log(_rb.velocity + "TriggerEnter");
     }
