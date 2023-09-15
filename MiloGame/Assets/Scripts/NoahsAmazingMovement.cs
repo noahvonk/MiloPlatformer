@@ -31,6 +31,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         float move = Input.GetAxis("Horizontal");
         if (move > 0)
         {
+            //perhaps here will be code that will help prevent mr. enemy man from running through walls
             SetDirection(ref dir, direction.RIGHT);
             transform.localScale = new Vector3(1, 1, 1);
             int mask = LayerMask.GetMask("Wall");
@@ -68,8 +69,8 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
 
             //Debug.Log("In Climbing position");
-            velo = Climb();
-            _rb.gravityScale = 0;
+            //velo = Climb();
+            //_rb.gravityScale = 0;
 
         }
         else
