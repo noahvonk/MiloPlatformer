@@ -26,7 +26,7 @@ public class Key : MonoBehaviour
         //if (gameObjects.Length == 0)
         //{
             //hasKey = true;
-            //GameManager.Instance.Lock2.SetActive(false);
+            //Lock.SetActive(false);
         //}
     }
 
@@ -38,9 +38,9 @@ public class Key : MonoBehaviour
             gameObject.SetActive(false);
             Lock.SetActive(false);
         }
-        // if (collider.gameObject.tag == "Key Piece")
-        // {
-        //     collider.gameObject.SetActive(false);
-        // }
+        //if (collider.gameObject.tag == "Key Piece")
+        //{
+            //collider.gameObject.SetActive(false);
+        //}
     }
 }

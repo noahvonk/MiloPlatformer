@@ -154,7 +154,7 @@ public class NoahsAmazingMovement : MonoBehaviour
         else
         {
             //Debug.Log(_hit.collider);
-            if( !_WallJumping && _hit.collider != null && _hit.collider.gameObject.CompareTag("Ground"))
+            if( !_WallJumping && _hit.collider != null && (_hit.collider.gameObject.CompareTag("Ground") || _hit.collider.gameObject.CompareTag("Wall") || _hit.collider.gameObject.CompareTag("LeftWall") || _hit.collider.gameObject.CompareTag("RightWall")))
             {
                 _canClimb = false;
                 ChangeDirection(ref dir);

@@ -14,13 +14,17 @@ TagManager:
   - Lift
   - Key
   - Lock
-  - Key Piece
   - Room
   - Wall
   - Waterfall
   - FloorCheck
   - Reverse
   - Enemy
+  - LeftWall
+  - RightWall
+  - Key Piece A
+  - Key Piece B
+  - Key Piece C
   layers:
   - Default
   - TransparentFX

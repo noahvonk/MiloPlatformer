@@ -32,14 +32,6 @@ public class Sinking : MonoBehaviour
             //doesn't move player after death
             GameManager.Instance.Player.transform.position += new Vector3(0, -speed, 0);
         }
-        else if (transform.position.y >= maxHeight)
-        {
-            // stops from going to high
-        }
-        else if (!sinking)
-        {
-            transform.position += new Vector3 (0, speed, 0);
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
