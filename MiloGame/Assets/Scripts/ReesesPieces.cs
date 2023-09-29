@@ -15,32 +15,43 @@ public class ReesesPieces : MonoBehaviour
     {
         hasKey = false;
 
-        GameObject[] gameObjects;
-        gameObjects = GameObject.FindGameObjectsWithTag("Key Piece");
+        GameObject[] piecesA;
+        piecesA = GameObject.FindGameObjectsWithTag("Key Piece A");
+
+        GameObject[] piecesB;
+        piecesB = GameObject.FindGameObjectsWithTag("Key Piece B");
     }
 
     // Update is called once per frame
     void Update()
     {
-        GameObject[] gameObjects;
-        gameObjects = GameObject.FindGameObjectsWithTag("Key Piece");
+        GameObject[] piecesA;
+        piecesA = GameObject.FindGameObjectsWithTag("Key Piece A");
 
-        if (gameObjects.Length == 0)
+        GameObject[] piecesB;
+        piecesB = GameObject.FindGameObjectsWithTag("Key Piece B");
+
+        if (piecesA.Length == 0)
         {
             hasKey = true;
-            Lock.SetActive(false);
+            LockA.SetActive(false);
+        }
+
+        if (piecesB.Length == 0)
+        {
+            hasKey = true;
+            LockB.SetActive(false);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        //if (collider.gameObject.tag == "Player")
-        //{
-            //hasKey = true;
-            //gameObject.SetActive(false);
-            //Lock.SetActive(false);
-        //}
-        if (collider.gameObject.tag == "Key Piece")
+        if (collider.gameObject.tag == "Key Piece A")
+        {
+            //var keyPiece = collider.transform.GetComponent<JumpRestore>(); 
+            collider.gameObject.SetActive(false);
+        }
+        if (collider.gameObject.tag == "Key Piece B")
         {
             collider.gameObject.SetActive(false);
         }
