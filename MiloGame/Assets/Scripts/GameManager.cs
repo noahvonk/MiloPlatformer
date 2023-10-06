@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject Player;
+
+    public Vector3 checkPoint = new Vector3(0, 0, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +26,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void moveToCheckPoint()
+    {
+        Player.transform.position = checkPoint;
     }
 }
