@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b52a0a7c21f4847abda9520916d8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
 --- !u!1 &4724433646983203235
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +399,7 @@ MonoBehaviour:
   - Lift
   - Spring
   - Switch
+  - Sink
 --- !u!1 &7738727831027824713
 GameObject:
   m_ObjectHideFlags: 0
