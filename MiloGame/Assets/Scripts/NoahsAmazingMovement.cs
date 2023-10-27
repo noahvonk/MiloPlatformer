@@ -275,6 +275,14 @@ public class NoahsAmazingMovement : MonoBehaviour
         //Debug.Log(_rb.velocity + "TriggerExit");
     }
 
+
+
+    private void OnBoxCollidedExited(Collider2D collider)
+    {
+        //Debug.Log("Leaving Ground");
+        _grounded = false;
+    }
+
     private void OnBoxCollidedEntered(Collider2D collider)
     {
         //Debug.Log("Entering Ground");
@@ -284,13 +292,6 @@ public class NoahsAmazingMovement : MonoBehaviour
             _WallJumping = false;
         }
     }
-
-    private void OnBoxCollidedExited(Collider2D collider)
-    {
-        //Debug.Log("Leaving Ground");
-        _grounded = false;
-    }
-
 
     private void OnCollisionExit2D(Collision2D collision)
     {
