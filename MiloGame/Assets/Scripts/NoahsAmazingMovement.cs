@@ -259,6 +259,10 @@ public class NoahsAmazingMovement : MonoBehaviour
         {
             
         }
+        if (collision.CompareTag("Warp"))
+        {
+            //Player.transform.position.x = Warp_x;
+        }
         //Debug.Log(_rb.velocity + "TriggerEnter");
     }
 
