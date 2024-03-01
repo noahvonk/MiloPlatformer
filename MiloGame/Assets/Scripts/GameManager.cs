@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
 
     public Vector3 checkPoint = new Vector3(0, 0, 0);
+    public Vector3 warpBoxCoordinates = new Vector3(0,0,0);
     // Start is called before the first frame update
     void Start()
     {
@@ -31,5 +32,10 @@ public class GameManager : MonoBehaviour
     public void moveToCheckPoint()
     {
         Player.transform.position = checkPoint;
+    }
+
+    public void goToWarpbox()
+    {
+        Player.transform.position = warpBoxCoordinates;
     }
 }
