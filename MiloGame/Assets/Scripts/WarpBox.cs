@@ -7,6 +7,7 @@ public class WarpBox : MonoBehaviour
     [SerializeField] public float Warp_x;
     [SerializeField] public float Warp_y;
     public GameObject GameManager;
+    Vector3 newWarpbox;
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +26,7 @@ public class WarpBox : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Debug.Log("Yes");
-            Vector3 newWarpbox;
-            newWarpbox = Vector3(Warp_x, Warp_y, 0);
+            newWarpbox = new Vector3(Warp_x, Warp_y, 0);
             GameManager.GetComponent<GameManager>().warpBoxCoordinates = newWarpbox;
             GameManager.GetComponent<GameManager>().goToWarpbox();
         }
