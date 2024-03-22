@@ -4968,6 +4968,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6908752214249569387, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
+      propertyPath: GameManager
+      value: 
+      objectReference: {fileID: 1887564492}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_RootOrder
       value: 2
