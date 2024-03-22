@@ -5334,11 +5334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.17
+      value: 143.25
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9
+      value: 21.83
       objectReference: {fileID: 0}
     - target: {fileID: 9124973964610693131, guid: 75260864cb86a4ef19aea2204ae7c118, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7892,6 +7892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 576450052}
   checkPoint: {x: 0, y: 0, z: 0}
+  warpBoxCoordinates: {x: 0, y: 0, z: 0}
 --- !u!4 &1492524894
 Transform:
   m_ObjectHideFlags: 0
